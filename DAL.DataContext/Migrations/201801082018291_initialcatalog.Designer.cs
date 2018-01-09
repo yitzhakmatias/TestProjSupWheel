@@ -6,14 +6,14 @@ namespace DAL.DataContext.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
+    [GeneratedCode("EntityFramework.Migrations", "6.0.0-20911")]
     public sealed partial class initialcatalog : IMigrationMetadata
     {
         private readonly ResourceManager Resources = new ResourceManager(typeof(initialcatalog));
         
         string IMigrationMetadata.Id
         {
-            get { return "201801062344408_initialcatalog"; }
+            get { return "201801082018291_initialcatalog"; }
         }
         
         string IMigrationMetadata.Source

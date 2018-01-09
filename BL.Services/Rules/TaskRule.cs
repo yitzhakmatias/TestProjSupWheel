@@ -1,17 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using BL.CORE;
 using BL.Services.Repositories;
 using DAL.DataContext;
+using DAL.DataContext.Ctx;
 
 namespace BL.Services.Rules
 {
-    public class TaskRule
+    public class TaskRule : ITaskRule
     {
         private static Random _random;
+        public IEnumerable<TaskEngineer> TaskEngineers { get; set; }
         private readonly IEngineerRepository _engineerRepository;
         private readonly ITaskRepository _taskRepository;
         private readonly IShiftRepository _shiftReporsitory;
         private readonly IUnitOfWork _unitOfWork;
+
+        public static HashSet<int> Exclude { get; set; }
 
         public TaskRule(IEngineerRepository engineerRepository, ITaskRepository taskRepository, IShiftRepository shiftReporsitory, IUnitOfWork unitOfWork)
         {
@@ -19,9 +25,10 @@ namespace BL.Services.Rules
             _taskRepository = taskRepository;
             _shiftReporsitory = shiftReporsitory;
             _unitOfWork = unitOfWork;
+            Exclude = new HashSet<int>();
         }
 
-        public void AddTShiftToEmployee()
+        public IEnumerable<TaskEngineer> UpdateShiftToEmployee()
         {
             //rules
 
@@ -31,30 +38,93 @@ namespace BL.Services.Rules
 
             var tasks = _taskRepository.GetMany(t => t.EngineerId == employee.EngineerId);
 
-            if (tasks != null)
+            TaskEngineers = _taskRepository.GetAll();
+
+            foreach (var enginner in TaskEngineers)
             {
-                var taskEngineer = new TaskEngineer()
-                {
-                    Engineers = employee,
-                    Shifts = shifts
-                };
-
-
-                _taskRepository.Add(taskEngineer);
+                enginner.Day = 0;
             }
-
             _unitOfWork.Commit();
 
+            foreach (var enginner in TaskEngineers)
+            {
+                AssignShift(enginner);
+                _unitOfWork.Commit();
+            }
+
+            return TaskEngineers.ToList();
+
         }
 
-        private bool IsEnginnerAssigned(int id)
+
+        private bool IsDayAvailable(int day)
         {
-            var task = _taskRepository.Get(p => p.EngineerId == id);
-            return task != null;
+            var tasks = _taskRepository.GetMany(p => p.Day == day).Count();
+
+            var isAvailable = tasks != 2;
+            if (tasks == 2)
+            {
+                Exclude.Add(day);
+            }
+            return isAvailable;
         }
 
-        private bool IsTheAssignedDayNextToTheLastOne()
+        private void AssignShift(TaskEngineer taskeEngineer)
         {
+
+            if (taskeEngineer.ShiftId == 1)
+            {
+                var response = false;
+
+                while (response == false)
+                {
+                    var randomDay = Random(1, 10);
+                    response = IsDayAvailable(randomDay);
+
+                    if (response)
+                    {
+                        taskeEngineer.Day = randomDay;
+                        //  Exclude.Add(randomDay);
+                    }
+                }
+
+
+            }
+
+            if (taskeEngineer.ShiftId != 2) return;
+            {
+                var enginner = TaskEngineers.First(p => p.EngineerId == taskeEngineer.EngineerId && p.ShiftId == 1);
+
+                var response = false;
+
+                do
+                {
+                    var day = Random(1, 10);
+
+                    var isDayAvailable = IsDayAvailable(day);
+
+                    if (isDayAvailable == false) continue;
+
+                    if (day == (enginner.Day - 1)) continue;
+
+                    taskeEngineer.Day = day;
+                    response = true;
+                    // Exclude.Add(day);
+
+                } while (response == false);
+            }
+            // var taskEngineer = taskemEngineers.First(p => p.EngineerId == enginnerId && p.ShiftId == 1);
+
+
+            // taskEngineer
+
+            //   return taskEngineer;
+        }
+
+        private bool IsTheAssignedDayNextToTheLastOne(Engineer engineer)
+        {
+
+
             return false;
         }
         private static void Init()
@@ -64,7 +134,8 @@ namespace BL.Services.Rules
         public static int Random(int min, int max)
         {
             Init();
-            return _random.Next(min, max);
+
+            return _random.Next(min, max - Exclude.Count);
         }
     }
 }

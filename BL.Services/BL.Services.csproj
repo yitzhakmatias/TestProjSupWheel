@@ -68,6 +68,7 @@
     <Compile Include="Repositories\ITaskRepository.cs" />
     <Compile Include="Repositories\ShiftRepository.cs" />
     <Compile Include="Repositories\TaskRepository.cs" />
+    <Compile Include="Rules\ITaskRule.cs" />
     <Compile Include="Rules\TaskRule.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -84,6 +85,8 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

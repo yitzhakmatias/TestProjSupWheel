@@ -1,11 +1,12 @@
 ﻿using BL.CORE;
 using DAL.DataContext;
+using DAL.DataContext.Ctx;
 
 namespace BL.Services.Repositories
 {
-    public class ShiftRepository : EntityRepository<Shift, WheelContext>, IShiftRepository
+    public class ShiftRepository : EntityRepository<Shift, WheelCtx>, IShiftRepository
     {
-        public ShiftRepository(IDataContextFactory<WheelContext> databaseFactory) : base(databaseFactory)
+        public ShiftRepository(IDataContextFactory<WheelCtx> databaseFactory) : base(databaseFactory)
         {
         }
     }

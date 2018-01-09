@@ -1,11 +1,12 @@
 ﻿using BL.CORE;
 using DAL.DataContext;
+using DAL.DataContext.Ctx;
 
 namespace BL.Services.Repositories
 {
-    public class EngineerRepository : EntityRepository<Engineer, WheelContext>, IEngineerRepository
+    public class EngineerRepository : EntityRepository<Engineer, WheelCtx>, IEngineerRepository
     {
-        public EngineerRepository(IDataContextFactory<WheelContext> databaseFactory) : base(databaseFactory)
+        public EngineerRepository(IDataContextFactory<WheelCtx> databaseFactory) : base(databaseFactory)
         {
         }
     }

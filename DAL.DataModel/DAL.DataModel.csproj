@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C048D87E-2CAD-4B9F-A53F-D96392400B9B}</ProjectGuid>
+    <ProjectGuid>{36D8DF9D-A4C6-414A-AD18-6937001DF250}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DAL.DataContext</RootNamespace>
-    <AssemblyName>DAL.DataContext</AssemblyName>
+    <RootNamespace>DAL.DataModel</RootNamespace>
+    <AssemblyName>DAL.DataModel</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,17 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,31 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ctx\Engineer.cs" />
-    <Compile Include="Ctx\Shift.cs" />
-    <Compile Include="Ctx\TaskEngineer.cs" />
-    <Compile Include="Ctx\WheelCtx.cs" />
-    <Compile Include="Migrations\201801082018291_initialcatalog.cs" />
-    <Compile Include="Migrations\201801082018291_initialcatalog.Designer.cs">
-      <DependentUpon>201801082018291_initialcatalog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Day.cs" />
+    <Compile Include="Engineer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BL.CORE\BL.CORE.csproj">
-      <Project>{F4C67257-276A-41C3-92AF-66AAC39F1F80}</Project>
-      <Name>BL.CORE</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201801082018291_initialcatalog.resx">
-      <DependentUpon>201801082018291_initialcatalog.cs</DependentUpon>
-    </EmbeddedResource>
+    <Compile Include="Shift.cs" />
+    <Compile Include="TaskEngineer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

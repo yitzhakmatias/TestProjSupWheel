@@ -5,6 +5,7 @@ using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
 using BL.Services.IoC;
+using BL.Services.Repositories;
 
 namespace TestProjSupWheel.App_Start
 {
@@ -52,13 +53,7 @@ namespace TestProjSupWheel.App_Start
 
             //The line below tells autofac, when a controller is initialized, pass into its constructor, the implementations of the required interfaces
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
-
-          /*  builder.RegisterAssemblyTypes(typeof(BookRepository).Assembly)
-                .Where(t => t.Name.EndsWith("Repository"))
-                .AsImplementedInterfaces()
-                .InstancePerRequest();*/
-            //The line below tells autofac, everytime an implementation IDAL is needed, pass in an instance of the class DAL
-            //builder.RegisterType<DAL>().As<IDAL>().InstancePerLifetimeScope();         
+             
             builder.BuilderHelper();
         }
     }
