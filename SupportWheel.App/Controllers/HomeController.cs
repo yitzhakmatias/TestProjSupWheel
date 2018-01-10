@@ -10,7 +10,13 @@ namespace SupportWheel.App.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
+           
+
+            return View();
+        }
+
+        public ActionResult Shifts()
+        {
 
             return View();
         }

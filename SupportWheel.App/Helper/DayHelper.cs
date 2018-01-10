@@ -8,6 +8,7 @@ namespace SupportWheel.App.Helper
     public static class DayHelper
     {
         private static string _dayByNumber;
+        private static string _week;
 
         public static String DayByNumber
         {
@@ -30,6 +31,22 @@ namespace SupportWheel.App.Helper
                 }
             }
             set { _dayByNumber = value; }
+        }
+
+        public static string Week
+        {
+            get
+            {
+                switch (_week)
+                {
+                    case "1": return "First Week ";
+                    case "2": return "Second Week ";
+                   
+                    default: return "";
+
+                }
+            }
+            set { _week = value; }
         }
     }
 }

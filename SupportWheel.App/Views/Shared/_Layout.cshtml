@@ -10,6 +10,8 @@
     <script src="~/Scripts/App/app.js"></script>
     <script src="~/Scripts/App/Services/EngineerService.js"></script>
     <script src="~/Scripts/App/Controllers/EngineerController.js"></script>
+    <script src="~/Scripts/App/Controllers/ShiftController.js"></script>
+    <script src="~/Scripts/App/Services/ShiftService.js"></script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -24,7 +26,8 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Engineers", "Index", "Home", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Shifts", "Shifts", "Home", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
                 </ul>
             </div>

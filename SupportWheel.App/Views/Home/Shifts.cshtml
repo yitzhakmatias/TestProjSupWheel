@@ -1,0 +1,36 @@
+﻿
+<h2>Shifts</h2>
+<div ng-app="app">
+    <div ng-controller="shiftController" ng-init="GetAllData()" class="divList">
+        <p class="divHead">Enginner's List</p>
+
+        <table cellpadding="12" class="table table-bordered table-hover">
+            <tr>
+
+                <td>
+                    <b>Week</b>
+                </td>
+
+                <td>
+                    <b>Day</b>
+                </td>
+                <td>
+                    <b>Name</b>
+                </td>
+
+            </tr>
+            <tr ng-repeat="shift in Shifts">
+                
+                <td>
+                    {{shift.week}}
+                </td>
+                <td>
+                    {{shift.Day}}
+                </td>
+                <td>
+                    {{shift.Name}}
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

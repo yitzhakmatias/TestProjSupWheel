@@ -195,7 +195,6 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\EngineerApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\WheelApiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -215,7 +214,9 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\App\app.js" />
     <Content Include="Scripts\App\Controllers\EngineerController.js" />
+    <Content Include="Scripts\App\Controllers\ShiftController.js" />
     <Content Include="Scripts\App\Services\EngineerService.js" />
+    <Content Include="Scripts\App\Services\ShiftService.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -261,6 +262,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Shifts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -46,8 +46,8 @@ namespace BL.Services.Rules
                 AssignShift(enginner);
                 _unitOfWork.Commit();
             }
-   
-            return ShiftsByEngineers.OrderBy(p => p.Day);
+
+            return ShiftsByEngineers.OrderBy(p => p.Day).ThenBy(p => p.ShiftId);
 
         }
 
