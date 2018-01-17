@@ -7,11 +7,11 @@ namespace DAL.DataContext.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<DAL.DataContext.Ctx.WheelCtx>
+    internal sealed class Configuration : DropCreateDatabaseIfModelChanges<DAL.DataContext.Ctx.WheelCtx>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            //AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(DAL.DataContext.Ctx.WheelCtx context)

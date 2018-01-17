@@ -13,6 +13,8 @@ namespace DAL.DataContext.Ctx
         public WheelCtx()
             : base("name=WheelCtx")
         {
+          //  Database.SetInitializer(new MigrateDatabaseToLatestVersion<WheelCtx, DAL.DataContext.Migrations.Configuration>("WheelCtx"));
+            Database.SetInitializer(new DAL.DataContext.Migrations.Configuration());
         }
 
         public virtual DbSet<Engineer> Engineers { get; set; }
@@ -21,6 +23,7 @@ namespace DAL.DataContext.Ctx
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
         }
         public DbSet Set(Type entityType)
         {
@@ -31,5 +34,6 @@ namespace DAL.DataContext.Ctx
         {
             return  null;
         }
+       
     }
 }
