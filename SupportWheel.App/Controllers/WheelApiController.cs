@@ -5,14 +5,29 @@ using SupportWheel.App.Helper;
 
 namespace SupportWheel.App.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Web.Http.ApiController" />
     public class WheelApiController : ApiController
     {
+        /// <summary>
+        /// The task rule
+        /// </summary>
         private readonly ITaskRule _taskRule;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WheelApiController"/> class.
+        /// </summary>
+        /// <param name="taskRule">The task rule.</param>
         public WheelApiController(ITaskRule taskRule)
         {
             _taskRule = taskRule;
         }
-  
+
+        /// <summary>
+        /// Gets the rules.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/WheelApi/GetRules")]
         public IHttpActionResult GetRules()

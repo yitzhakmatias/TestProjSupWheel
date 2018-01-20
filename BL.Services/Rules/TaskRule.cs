@@ -8,16 +8,54 @@ using DAL.DataContext.Ctx;
 
 namespace BL.Services.Rules
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="BL.Services.Rules.ITaskRule" />
     public class TaskRule : ITaskRule
     {
+        /// <summary>
+        /// The random
+        /// </summary>
         private static Random _random;
+        /// <summary>
+        /// Gets or sets the shifts by engineers.
+        /// </summary>
+        /// <value>
+        /// The shifts by engineers.
+        /// </value>
         public IEnumerable<TaskEngineer> ShiftsByEngineers { get; set; }
+        /// <summary>
+        /// The engineer repository
+        /// </summary>
         private readonly IEngineerRepository _engineerRepository;
+        /// <summary>
+        /// The task repository
+        /// </summary>
         private readonly ITaskRepository _taskRepository;
+        /// <summary>
+        /// The shift reporsitory
+        /// </summary>
         private readonly IShiftRepository _shiftReporsitory;
+        /// <summary>
+        /// The unit of work
+        /// </summary>
         private readonly IUnitOfWork _unitOfWork;
+        /// <summary>
+        /// Gets or sets the days.
+        /// </summary>
+        /// <value>
+        /// The days.
+        /// </value>
         public static int[] Days { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TaskRule"/> class.
+        /// </summary>
+        /// <param name="engineerRepository">The engineer repository.</param>
+        /// <param name="taskRepository">The task repository.</param>
+        /// <param name="shiftReporsitory">The shift reporsitory.</param>
+        /// <param name="unitOfWork">The unit of work.</param>
         public TaskRule(IEngineerRepository engineerRepository, ITaskRepository taskRepository, IShiftRepository shiftReporsitory, IUnitOfWork unitOfWork)
         {
             _engineerRepository = engineerRepository;
@@ -28,6 +66,10 @@ namespace BL.Services.Rules
 
         }
 
+        /// <summary>
+        /// Updates the shift to employee.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<TaskEngineer> UpdateShiftToEmployee()
         {
             //rules
@@ -52,6 +94,13 @@ namespace BL.Services.Rules
         }
 
 
+        /// <summary>
+        /// Determines whether [is day available] [the specified day].
+        /// </summary>
+        /// <param name="day">The day.</param>
+        /// <returns>
+        ///   <c>true</c> if [is day available] [the specified day]; otherwise, <c>false</c>.
+        /// </returns>
         private bool IsDayAvailable(int day)
         {
             var tasks = _taskRepository.GetMany(p => p.Day == day).Count();
@@ -66,6 +115,10 @@ namespace BL.Services.Rules
             return isAvailable;
         }
 
+        /// <summary>
+        /// Assigns the shift.
+        /// </summary>
+        /// <param name="taskeEngineer">The taske engineer.</param>
         private void AssignShift(TaskEngineer taskeEngineer)
         {
 
@@ -121,10 +174,19 @@ namespace BL.Services.Rules
             }
         }
 
+        /// <summary>
+        /// Initializes this instance.
+        /// </summary>
         private static void Init()
         {
             if (_random == null) _random = new Random();
         }
+        /// <summary>
+        /// Randoms the specified minimum.
+        /// </summary>
+        /// <param name="min">The minimum.</param>
+        /// <param name="max">The maximum.</param>
+        /// <returns></returns>
         public static int Random(int min, int max)
         {
             Init();

@@ -3,16 +3,15 @@ using BL.Services.IoC;
 using BL.Services.Repositories;
 using DAL.DataContext;
 using DAL.DataContext.Ctx;
-using NUnit.Framework;
+using Xunit;
 
 namespace BL.Test
 {
-    [TestFixture]
     public class EngineerRepositoryTest
     {
 
 
-        [Test]
+        [Fact]
         public void GetAllEngineersTest()
         {
             var ioc = IoCContainerHelper.Resolve<IEngineerRepository>();

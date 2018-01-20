@@ -5,11 +5,26 @@ using System.Web;
 
 namespace SupportWheel.App.Helper
 {
+    /// <summary>
+    /// Get day's name based on the number 
+    /// </summary>
     public static class DayHelper
     {
+        /// <summary>
+        /// The day by number
+        /// </summary>
         private static string _dayByNumber;
+        /// <summary>
+        /// The week
+        /// </summary>
         private static string _week;
 
+        /// <summary>
+        /// Gets or sets the day by number.
+        /// </summary>
+        /// <value>
+        /// The day by number.
+        /// </value>
         public static String DayByNumber
         {
             get
@@ -33,6 +48,12 @@ namespace SupportWheel.App.Helper
             set { _dayByNumber = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the week.
+        /// </summary>
+        /// <value>
+        /// The week.
+        /// </value>
         public static string Week
         {
             get
